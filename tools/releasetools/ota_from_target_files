@@ -52,10 +52,6 @@ Usage:  ota_from_target_files [flags] input_target_files output_ota_package
   -a  (--aslr_mode)  <on|off>
       Specify whether to turn on ASLR for the package (on by default).
 
-  --backup <boolean>
-      Enable or disable the execution of backuptool.sh.
-      Disabled by default.
-
   --override_device <device>
       Override device-specific asserts. Can be a comma-separated list.
 
@@ -100,7 +96,6 @@ OPTIONS.aslr_mode = True
 OPTIONS.worker_threads = 3
 OPTIONS.override_device = 'auto'
 OPTIONS.no_assert = False
-OPTIONS.backuptool = False
 
 def MostPopularKey(d, default):
   """Given a dict, return the key corresponding to the largest
@@ -407,9 +402,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   device_specific.FullOTA_InstallBegin()
 
-  if OPTIONS.backuptool:
-    script.RunBackup("backup")
-
   script.ShowProgress(0.5, 0)
   script.Print("....................................... OM.................")
   script.Print(".....................................MMMMM ................")
@@ -439,7 +431,11 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("|             THE ORCA PROJECT 4.2.1          |")
   script.Print("|                 by DrewGaren                |")
   script.Print("|           The Orca Project Version 1.0      |")
+<<<<<<< HEAD
   script.Print("=================orca=nightlies================")
+=======
+  script.Print("=================orca=nightlies================") 
+>>>>>>> 4.2.2 updates
 
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
@@ -451,7 +447,10 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Mount("/system")
   script.UnpackPackageDir("system", "/system")
 
+<<<<<<< HEAD
   script.Print("::: Symlinking...")
+=======
+>>>>>>> 4.2.2 updates
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
 
@@ -465,15 +464,16 @@ def WriteFullOTAPackage(input_zip, output_zip):
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
   script.ShowProgress(0.2, 0)
 
-  if OPTIONS.backuptool:
-    script.ShowProgress(0.2, 10)
-    script.RunBackup("restore")
-
   script.ShowProgress(0.2, 10)
+<<<<<<< HEAD
   script.Print("Shamu Killaz"")
   script.Print("Enjoy, No Orca's Were Harmed In The Making Of This Rom")
+=======
+  script.Print("Shamu Killaz")
+>>>>>>> 4.2.2 updates
   script.WriteRawImage("/boot", "boot.img")
 
+  script.Print("Enjoy, No Orca's Were Harmed In The Making Of This Rom!")
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
 
@@ -808,8 +808,6 @@ def main(argv):
       OPTIONS.override_device = a
     elif o in ("--worker_threads"):
       OPTIONS.worker_threads = int(a)
-    elif o in ("--backup"):
-      OPTIONS.backuptool = bool(a.lower() == 'true')
     else:
       return False
     return True
@@ -825,7 +823,6 @@ def main(argv):
                                               "extra_script=",
                                               "worker_threads=",
                                               "aslr_mode=",
-                                              "backup=",
 					      "override_device=",
                                               ],
                              extra_option_handler=option_handler)
