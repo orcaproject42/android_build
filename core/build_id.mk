@@ -18,8 +18,5 @@
 # (like "CRB01").  It must be a single word, and is
 # capitalized by convention.
 
-<<<<<<< HEAD
-export BUILD_ID=JOP40G
-=======
 export BUILD_ID=JDQ39
->>>>>>> 4.2.2 updates
+
