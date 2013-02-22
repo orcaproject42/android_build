@@ -431,11 +431,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("|             THE ORCA PROJECT 4.2.1          |")
   script.Print("|                 by DrewGaren                |")
   script.Print("|           The Orca Project Version 1.0      |")
-<<<<<<< HEAD
   script.Print("=================orca=nightlies================")
-=======
-  script.Print("=================orca=nightlies================") 
->>>>>>> 4.2.2 updates
 
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
@@ -447,10 +443,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Mount("/system")
   script.UnpackPackageDir("system", "/system")
 
-<<<<<<< HEAD
   script.Print("::: Symlinking...")
-=======
->>>>>>> 4.2.2 updates
+
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
 
@@ -465,12 +459,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.ShowProgress(0.2, 0)
 
   script.ShowProgress(0.2, 10)
-<<<<<<< HEAD
   script.Print("Shamu Killaz"")
-  script.Print("Enjoy, No Orca's Were Harmed In The Making Of This Rom")
-=======
-  script.Print("Shamu Killaz")
->>>>>>> 4.2.2 updates
   script.WriteRawImage("/boot", "boot.img")
 
   script.Print("Enjoy, No Orca's Were Harmed In The Making Of This Rom!")
